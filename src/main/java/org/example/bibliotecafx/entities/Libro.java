@@ -32,6 +32,7 @@ public class Libro {
         this.editorial = editorial;
         this.anioPublicacion = anioPublicacion;
         this.prestado = false;
+        //
     }
 
     //Getters & Setters
