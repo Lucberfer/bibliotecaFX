@@ -36,6 +36,8 @@ public class AutorDAO {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
         }
+
+
     }
 
     public void deleteAutor(Autor autor) {
