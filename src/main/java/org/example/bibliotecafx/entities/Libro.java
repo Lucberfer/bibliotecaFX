@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "libros")
+
 public class Libro {
 
     @Id
@@ -91,5 +92,10 @@ public class Libro {
 
     public void setPrestado(boolean prestado) {
         this.prestado = prestado;
+    }
+
+    @Override
+    public String toString() {
+        return titulo;
     }
 }
