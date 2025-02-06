@@ -62,7 +62,7 @@ public class LibrosController {
     }
 
     @FXML
-    private void onAgregar() {
+    public void onAgregar() {
         try {
             String titulo = tfTitulo.getText();
             String isbn = tfISBN.getText();
@@ -87,7 +87,7 @@ public class LibrosController {
     }
 
     @FXML
-    private void onModificar() {
+    public void onModificar() {
         Libro libro = tablaLibros.getSelectionModel().getSelectedItem();
         if(libro == null){
             showAlert("Error", "Seleccione un libro para modificar");
@@ -119,7 +119,7 @@ public class LibrosController {
     }
 
     @FXML
-    private void onEliminar() {
+    public void onEliminar() {
         Libro libro = tablaLibros.getSelectionModel().getSelectedItem();
         if(libro == null){
             showAlert("Error", "Seleccione un libro para eliminar");
@@ -132,7 +132,7 @@ public class LibrosController {
     }
 
     @FXML
-    private void onBuscar() {
+    public void onBuscar() {
         String titulo = tfBuscarTitulo.getText();
         String autorNombre = tfBuscarAutor.getText();
         String isbn = tfBuscarISBN.getText();
@@ -141,21 +141,21 @@ public class LibrosController {
     }
 
     @FXML
-    private void onRefresh() {
+    public void onRefresh() {
         refreshTable();
     }
 
     @FXML
-    private void onLimpiar() {
+    public void onLimpiar() {
         clearFields();
     }
 
-    private void refreshTable(){
+    public void refreshTable(){
         librosList = FXCollections.observableArrayList(libroDAO.listAllLibros());
         tablaLibros.setItems(librosList);
     }
 
-    private void clearFields(){
+    public void clearFields(){
         tfTitulo.clear();
         tfISBN.clear();
         tfAutorId.clear();
@@ -163,7 +163,7 @@ public class LibrosController {
         tfAnio.clear();
     }
 
-    private void showAlert(String title, String message){
+    public void showAlert(String title, String message){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setContentText(message);
