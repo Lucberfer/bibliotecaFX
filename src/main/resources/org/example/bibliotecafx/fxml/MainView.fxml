@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.bibliotecafx.fxml.MainView"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.bibliotecafx.view.controller.MainViewController">
+    <top>
+        <HBox alignment="TOP_RIGHT" spacing="10" padding="10">
+            <Button text="Salir" fx:id="btnSalir" style="-fx-background-color: red; -fx-text-fill: white;" onAction="#handleSalir"/>
+        </HBox>
+    </top>
+    <left>
+        <VBox spacing="10" padding="10">
+            <Button text="Libros" onAction="#handleLibros"/>
+            <Button text="Autores" onAction="#handleAutores"/>
+            <Button text="Socios" onAction="#handleSocios"/>
+            <Button text="Préstamos" onAction="#handlePrestamos"/>
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="contentArea" padding="10">
+            <!-- The content will be loaded according to the selected button -->
+        </StackPane>
+    </center>
+</BorderPane>

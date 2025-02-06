@@ -71,14 +71,20 @@ public class PrestamosDAO {
         }
     }
 
+    public List<Prestamo> listHistorialPrestamosPorSocio(Long socioId) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+            String hql = "FROM Prestamo p WHERE p.socio.id = :socioId";
+            Query<Prestamo> query = session.createQuery(hql, Prestamo.class);
+            query.setParameter("socioId", socioId);
+            return query.list();
+        }
+    }
+
     public List<Prestamo> listAllPrestamos() {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()){
             String hql = "FROM Prestamo";
             Query<Prestamo> query = session.createQuery(hql, Prestamo.class);
             return query.list();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
         }
     }
 }

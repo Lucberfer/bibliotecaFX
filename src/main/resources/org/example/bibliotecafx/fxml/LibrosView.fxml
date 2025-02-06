@@ -1,14 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.bibliotecafx.fxml.LibrosView"
-            prefHeight="400.0" prefWidth="600.0" >
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.bibliotecafx.view.controller.LibrosController">
+    <top>
+        <HBox spacing="10" padding="10">
+            <Label text="Buscar:"/>
+            <TextField fx:id="tfBuscarTitulo" promptText="Título"/>
+            <TextField fx:id="tfBuscarAutor" promptText="Autor"/>
+            <TextField fx:id="tfBuscarISBN" promptText="ISBN"/>
+            <Button text="Buscar" onAction="#onBuscar"/>
+            <Button text="Refrescar" onAction="#onRefresh"/>
+        </HBox>
+    </top>
+    <center>
+        <TableView fx:id="tablaLibros">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colTitulo" text="Título" prefWidth="150"/>
+                <TableColumn fx:id="colISBN" text="ISBN" prefWidth="100"/>
+                <TableColumn fx:id="colAutor" text="Autor" prefWidth="100"/>
+                <TableColumn fx:id="colEditorial" text="Editorial" prefWidth="100"/>
+                <TableColumn fx:id="colAnio" text="Año" prefWidth="70"/>
+                <TableColumn fx:id="colPrestado" text="Prestado" prefWidth="70"/>
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <VBox spacing="10" padding="10">
+            <Label text="Agregar / Modificar Libro"/>
+            <GridPane hgap="10" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT"/>
+                    <ColumnConstraints/>
+                </columnConstraints>
+                <Label text="Título:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="tfTitulo" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-</AnchorPane>
+                <Label text="ISBN:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="tfISBN" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Autor (ID):" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="tfAutorId" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Editorial:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="tfEditorial" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Año:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="tfAnio" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            </GridPane>
+            <HBox spacing="10">
+                <Button text="Agregar" onAction="#onAgregar"/>
+                <Button text="Modificar" onAction="#onModificar"/>
+                <Button text="Eliminar" onAction="#onEliminar"/>
+                <Button text="Limpiar" onAction="#onLimpiar"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
