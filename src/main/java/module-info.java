@@ -8,7 +8,7 @@ module org.example.bibliotecafx {
     requires java.sql;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
-    requires mysql.connector.java;
+    //requires mysql.connector.java;
     requires org.slf4j;
 
     // Otras dependencias de la interfaz
