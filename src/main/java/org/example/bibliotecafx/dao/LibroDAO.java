@@ -61,28 +61,29 @@ public class LibroDAO {
     public List<Libro> searchLibros(String titulo, String autorNombre, String isbn) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             String hql = "FROM Libro l WHERE 1=1 ";
-            if(titulo != null && !titulo.isEmpty()){
+            if(titulo != null && !titulo.trim().isEmpty()){
                 hql += "AND l.titulo LIKE :titulo ";
             }
-            if(autorNombre != null && !autorNombre.isEmpty()){
+            if(autorNombre != null && !autorNombre.trim().isEmpty()){
                 hql += "AND l.autor.nombre LIKE :autorNombre ";
             }
-            if(isbn != null && !isbn.isEmpty()){
-                hql += "AND l.isbn = :isbn ";
+            if(isbn != null && !isbn.trim().isEmpty()){
+                hql += "AND l.isbn LIKE :isbn ";
             }
             Query<Libro> query = session.createQuery(hql, Libro.class);
-            if(titulo != null && !titulo.isEmpty()){
-                query.setParameter("titulo", "%" + titulo + "%");
+            if(titulo != null && !titulo.trim().isEmpty()){
+                query.setParameter("titulo", "%" + titulo.trim() + "%");
             }
-            if(autorNombre != null && !autorNombre.isEmpty()){
-                query.setParameter("autorNombre", "%" + autorNombre + "%");
+            if(autorNombre != null && !autorNombre.trim().isEmpty()){
+                query.setParameter("autorNombre", "%" + autorNombre.trim() + "%");
             }
-            if(isbn != null && !isbn.isEmpty()){
-                query.setParameter("isbn", isbn);
+            if(isbn != null && !isbn.trim().isEmpty()){
+                query.setParameter("isbn", "%" + isbn.trim() + "%");
             }
             return query.list();
         }
     }
+
 
     public List<Libro> listAllLibros() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()){

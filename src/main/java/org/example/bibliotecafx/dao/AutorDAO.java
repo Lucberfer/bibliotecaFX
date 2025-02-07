@@ -53,12 +53,18 @@ public class AutorDAO {
 
     public List<Autor> searchAutores(String nombre) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
-            String hql = "FROM Autor a WHERE a.nombre LIKE :nombre";
+            String hql = "FROM Autor a WHERE 1=1 ";
+            if (nombre != null && !nombre.trim().isEmpty()) {
+                hql += "AND a.nombre LIKE :nombre ";
+            }
             Query<Autor> query = session.createQuery(hql, Autor.class);
-            query.setParameter("nombre", "%" + nombre + "%");
+            if (nombre != null && !nombre.trim().isEmpty()) {
+                query.setParameter("nombre", "%" + nombre.trim() + "%");
+            }
             return query.list();
         }
     }
+
 
     public List<Autor> listAllAutores() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()){

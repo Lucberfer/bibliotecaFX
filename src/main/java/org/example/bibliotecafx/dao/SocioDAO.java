@@ -55,18 +55,18 @@ public class SocioDAO {
     public List<Socio> searchSocios(String nombre, String telefono) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             String hql = "FROM Socio s WHERE 1=1 ";
-            if(nombre != null && !nombre.isEmpty()){
+            if(nombre != null && !nombre.trim().isEmpty()){
                 hql += "AND s.nombre LIKE :nombre ";
             }
-            if(telefono != null && !telefono.isEmpty()){
-                hql += "AND s.telefono = :telefono ";
+            if(telefono != null && !telefono.trim().isEmpty()){
+                hql += "AND s.telefono LIKE :telefono ";
             }
             Query<Socio> query = session.createQuery(hql, Socio.class);
-            if(nombre != null && !nombre.isEmpty()){
-                query.setParameter("nombre", "%" + nombre + "%");
+            if(nombre != null && !nombre.trim().isEmpty()){
+                query.setParameter("nombre", "%" + nombre.trim() + "%");
             }
-            if(telefono != null && !telefono.isEmpty()){
-                query.setParameter("telefono", telefono);
+            if(telefono != null && !telefono.trim().isEmpty()){
+                query.setParameter("telefono", "%" + telefono.trim() + "%");
             }
             return query.list();
         }

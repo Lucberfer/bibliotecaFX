@@ -1,0 +1,77 @@
+
+.root {
+
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: linear-gradient(to bottom, #f5f7fa, #c3cfe2);
+}
+
+/* Estilos para los Labels */
+.label {
+    -fx-text-fill: #333;
+    -fx-font-size: 14px;
+}
+
+/* Estilos para los Botones */
+.button {
+    -fx-background-color: #007bff;      /* Azul moderno */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0.0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: #0056b3;
+}
+
+/* Estilos para los TextField */
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 4px 8px;
+}
+
+/* Estilos para el TableView */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: #e0e0e0;
+    -fx-padding: 8px;
+    -fx-focus-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #007bff;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: #007bff;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Estilos para las celdas de las tablas */
+.table-cell {
+    -fx-padding: 8px;
+    -fx-border-color: transparent transparent #e0e0e0 transparent;
+}
+
+/* Regiones y contenedores */
+.region {
+    -fx-padding: 8px;
+}
+
+/* CheckBox y RadioButton (si se usan) */
+.check-box, .radio-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
+
+

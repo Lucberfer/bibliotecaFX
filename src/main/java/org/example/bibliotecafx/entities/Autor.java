@@ -1,14 +1,13 @@
 package org.example.bibliotecafx.entities;
 
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "autores")
-
 public class Autor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -55,11 +54,5 @@ public class Autor {
     @Override
     public String toString() {
         return nombre;
-
-        /*return "Autor{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", nacionalidad='" + nacionalidad + '\'' +
-                '}';*/
     }
 }
