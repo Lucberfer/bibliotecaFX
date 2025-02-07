@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.bibliotecafx.view.controller.AutoresController">
+<?import javafx.scene.layout.ColumnConstraints?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.bibliotecafx.view.controller.AutoresController"
+            prefWidth="900" prefHeight="600">
     <top>
-        <HBox spacing="10" padding="10">
+        <HBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
             <Label text="Buscar:"/>
             <TextField fx:id="tfBuscarNombre" promptText="Nombre"/>
             <Button text="Buscar" onAction="#onBuscar"/>
@@ -22,7 +36,10 @@
         </TableView>
     </center>
     <bottom>
-        <VBox spacing="10" padding="10">
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
             <Label text="Agregar / Modificar Autor"/>
             <GridPane hgap="10" vgap="10">
                 <columnConstraints>
@@ -31,7 +48,6 @@
                 </columnConstraints>
                 <Label text="Nombre:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
                 <TextField fx:id="tfNombre" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-
                 <Label text="Nacionalidad:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
                 <TextField fx:id="tfNacionalidad" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
             </GridPane>

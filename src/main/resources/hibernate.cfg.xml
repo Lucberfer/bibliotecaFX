@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <!-- Configuración de conexión -->
+        <!-- Configuración de conexión a la base de datos -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <!-- Asegúrate de que la base de datos 'biblioteca' exista en tu servidor -->
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/biblioteca</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"></property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
-        <!-- Actualización automática del esquema -->
+        <!-- Configuración del dialecto de la base de datos -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+
+        <!-- Configuración de la generación del esquema -->
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
 
-        <!-- Mapeo de las entidades -->
+        <!-- Orden de los mapeos (las tablas referenciadas deben crearse primero) -->
         <mapping class="org.example.bibliotecafx.entities.Autor"/>
         <mapping class="org.example.bibliotecafx.entities.Libro"/>
         <mapping class="org.example.bibliotecafx.entities.Socio"/>
         <mapping class="org.example.bibliotecafx.entities.Prestamo"/>
+
     </session-factory>
 </hibernate-configuration>

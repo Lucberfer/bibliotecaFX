@@ -7,14 +7,24 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.bibliotecafx.view.controller.MainViewController">
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.bibliotecafx.view.controller.MainViewController"
+            prefWidth="900" prefHeight="600">
     <top>
-        <HBox alignment="TOP_RIGHT" spacing="10" padding="10">
-            <Button text="Salir" fx:id="btnSalir" style="-fx-background-color: red; -fx-text-fill: white;" onAction="#handleSalir"/>
+        <HBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button text="Salir" fx:id="btnSalir"
+                    style="-fx-background-color: red; -fx-text-fill: white;"
+                    onAction="#handleSalir"/>
         </HBox>
     </top>
     <left>
-        <VBox spacing="10" padding="10">
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
             <Button text="Libros" onAction="#handleLibros"/>
             <Button text="Autores" onAction="#handleAutores"/>
             <Button text="Socios" onAction="#handleSocios"/>
@@ -22,8 +32,10 @@
         </VBox>
     </left>
     <center>
-        <StackPane fx:id="contentArea" padding="10">
-            <!-- The content will be loaded according to the selected button -->
+        <StackPane fx:id="contentArea">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
         </StackPane>
     </center>
 </BorderPane>

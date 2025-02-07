@@ -1,14 +1,15 @@
 module org.example.bibliotecafx {
-    // Módulos de JavaFX y otros necesarios para la parte gráfica
+    // Módulos de JavaFX y otros para la parte gráfica
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
 
-    // Módulos para persistencia con Hibernate
+    // Módulos para persistencia (Hibernate y dependencias)
     requires java.sql;
+    requires java.naming;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
-    //requires mysql.connector.java;
+    // requires mysql.connector.java;
     requires org.slf4j;
 
     // Otras dependencias de la interfaz
@@ -21,12 +22,10 @@ module org.example.bibliotecafx {
     requires com.almasb.fxgl.all;
     requires java.persistence;
 
-    // Abrir paquetes para que sean accesibles vía reflexión
+    // Abrir paquetes para que sean accesibles vía reflexión (ajusta según la estructura real)
     opens org.example.bibliotecafx.entities to org.hibernate.orm.core, javafx.fxml;
-    opens org.example.bibliotecafx.view to javafx.fxml;
-    opens org.example.bibliotecafx.view.controllers to javafx.fxml;
+    opens org.example.bibliotecafx.view.controller to javafx.fxml;
 
-    // Exportar los paquetes que realmente se usarán desde fuera, si es necesario
-    exports org.example.bibliotecafx.view.controller;
-    // Exporta otros paquetes solo si son necesarios
+    // Exportar los paquetes que se necesiten desde fuera (exporta el paquete raíz si contiene tu clase principal)
+    exports org.example.bibliotecafx;
 }

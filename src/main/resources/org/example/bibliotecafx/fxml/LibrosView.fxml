@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.bibliotecafx.view.controller.LibrosController">
+<?import javafx.scene.layout.ColumnConstraints?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.bibliotecafx.view.controller.LibrosController"
+            prefWidth="900" prefHeight="600">
     <top>
-        <HBox spacing="10" padding="10">
+        <HBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
             <Label text="Buscar:"/>
             <TextField fx:id="tfBuscarTitulo" promptText="Título"/>
             <TextField fx:id="tfBuscarAutor" promptText="Autor"/>
@@ -28,7 +42,10 @@
         </TableView>
     </center>
     <bottom>
-        <VBox spacing="10" padding="10">
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
             <Label text="Agregar / Modificar Libro"/>
             <GridPane hgap="10" vgap="10">
                 <columnConstraints>
@@ -37,16 +54,12 @@
                 </columnConstraints>
                 <Label text="Título:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
                 <TextField fx:id="tfTitulo" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-
                 <Label text="ISBN:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
                 <TextField fx:id="tfISBN" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-
                 <Label text="Autor (ID):" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
                 <TextField fx:id="tfAutorId" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-
                 <Label text="Editorial:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
                 <TextField fx:id="tfEditorial" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-
                 <Label text="Año:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
                 <TextField fx:id="tfAnio" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
             </GridPane>

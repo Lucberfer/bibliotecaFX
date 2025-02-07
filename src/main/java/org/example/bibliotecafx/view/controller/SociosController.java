@@ -1,7 +1,5 @@
 package org.example.bibliotecafx.view.controller;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import org.example.bibliotecafx.dao.SocioDAO;
 import org.example.bibliotecafx.entities.Socio;
 import javafx.beans.property.SimpleObjectProperty;
@@ -10,8 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
-import javax.persistence.Table;
 
 public class SociosController {
 
@@ -32,7 +28,7 @@ public class SociosController {
     private ObservableList<Socio> sociosList;
 
     @FXML
-    public void initialize() {
+    public void initialize(){
         colId.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getId()));
         colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
         colDireccion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDireccion()));
@@ -48,38 +44,8 @@ public class SociosController {
         refreshTable();
     }
 
-
-
     @FXML
-    public void onBuscar(ActionEvent event) {
-        String nombre = tfBuscarNombre.getText();
-        String telefono = tfBuscarTelefono.getText();
-        sociosList = FXCollections.observableArrayList(socioDAO.searchSocios(nombre, telefono));
-        tablaSocios.setItems(sociosList);
-    }
-
-    @FXML
-    public void onRefresh(ActionEvent event) {
-    }
-
-    @FXML
-    public void onModificar(ActionEvent event) {
-        Socio socio = tablaSocios.getSelectionModel().getSelectedItem();
-        if(socio == null){
-            showAlert("Error", "Seleccione un socio para modificar");
-            return;
-        }
-        socio.setNombre(tfNombre.getText());
-        socio.setDireccion(tfDireccion.getText());
-        socio.setTelefono(tfTelefono.getText());
-        socioDAO.updateSocio(socio);
-        refreshTable();
-        clearFields();
-        showAlert("Éxito", "Socio modificado");
-    }
-
-    @FXML
-    public void onAgregar(ActionEvent event) {
+    private void onAgregar(){
         String nombre = tfNombre.getText();
         String direccion = tfDireccion.getText();
         String telefono = tfTelefono.getText();
@@ -95,7 +61,23 @@ public class SociosController {
     }
 
     @FXML
-    public void onEliminar(ActionEvent event) {
+    private void onModificar(){
+        Socio socio = tablaSocios.getSelectionModel().getSelectedItem();
+        if(socio == null){
+            showAlert("Error", "Seleccione un socio para modificar");
+            return;
+        }
+        socio.setNombre(tfNombre.getText());
+        socio.setDireccion(tfDireccion.getText());
+        socio.setTelefono(tfTelefono.getText());
+        socioDAO.updateSocio(socio);
+        refreshTable();
+        clearFields();
+        showAlert("Éxito", "Socio modificado");
+    }
+
+    @FXML
+    private void onEliminar(){
         Socio socio = tablaSocios.getSelectionModel().getSelectedItem();
         if(socio == null){
             showAlert("Error", "Seleccione un socio para eliminar");
@@ -108,31 +90,35 @@ public class SociosController {
     }
 
     @FXML
-    public void onLimpiar(ActionEvent event) {
+    private void onBuscar(){
+        String nombre = tfBuscarNombre.getText();
+        String telefono = tfBuscarTelefono.getText();
+        sociosList = FXCollections.observableArrayList(socioDAO.searchSocios(nombre, telefono));
+        tablaSocios.setItems(sociosList);
     }
 
     @FXML
-    public void onRefresh(){
+    private void onRefresh(){
         refreshTable();
     }
 
     @FXML
-    public void onLimpiar(){
+    private void onLimpiar(){
         clearFields();
     }
 
-    public void refreshTable(){
+    private void refreshTable(){
         sociosList = FXCollections.observableArrayList(socioDAO.listAllSocios());
         tablaSocios.setItems(sociosList);
     }
 
-    public void clearFields(){
+    private void clearFields(){
         tfNombre.clear();
         tfDireccion.clear();
         tfTelefono.clear();
     }
 
-    public void showAlert(String title, String message){
+    private void showAlert(String title, String message){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setContentText(message);
