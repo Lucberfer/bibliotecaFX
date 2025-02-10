@@ -1,54 +1,59 @@
+/* File: style.css */
+/* Soft pastel blue theme for BibliotecaFX, with a modern and subtle look */
 
 .root {
-
+    /* Modern font and a solid pastel blue background */
     -fx-font-family: "Segoe UI", sans-serif;
-    -fx-background-color: linear-gradient(to bottom, #f5f7fa, #c3cfe2);
+    -fx-background-color: #e3f2fd;  /* Light pastel blue */
 }
 
-/* Estilos para los Labels */
+/* Styles for Labels */
 .label {
-    -fx-text-fill: #333;
+    -fx-text-fill: #0d47a1;  /* Dark blue for contrast */
     -fx-font-size: 14px;
 }
 
-/* Estilos para los Botones */
+/* Styles for Buttons */
 .button {
-    -fx-background-color: #007bff;      /* Azul moderno */
+    -fx-background-color: #64b5f6;  /* Pastel blue */
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-padding: 8px 16px;
     -fx-background-radius: 4px;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0.0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0, 0, 1);
 }
 
+/* Hover effect for buttons */
 .button:hover {
-    -fx-background-color: #0056b3;
+    -fx-background-color: #42a5f5;
 }
 
-/* Estilos para los TextField */
+/* Styles for TextFields */
 .text-field {
     -fx-background-color: white;
-    -fx-border-color: #ccc;
+    -fx-text-fill: #0d47a1;
+    -fx-border-color: #90caf9;
     -fx-border-radius: 4px;
     -fx-background-radius: 4px;
     -fx-padding: 4px 8px;
 }
 
-/* Estilos para el TableView */
+/* Styles for TableView */
 .table-view {
     -fx-background-color: transparent;
-    -fx-table-cell-border-color: #e0e0e0;
+    -fx-table-cell-border-color: #90caf9;
     -fx-padding: 8px;
     -fx-focus-color: transparent;
 }
 
+/* Styles for TableView headers */
 .table-view .column-header-background {
-    -fx-background-color: #007bff;
+    -fx-background-color: #64b5f6;
 }
 
 .table-view .column-header, .table-view .filler {
-    -fx-background-color: #007bff;
+    -fx-background-color: #64b5f6;
     -fx-border-color: transparent;
 }
 
@@ -57,21 +62,19 @@
     -fx-font-weight: bold;
 }
 
-/* Estilos para las celdas de las tablas */
+/* Styles for TableView cells */
 .table-cell {
     -fx-padding: 8px;
     -fx-border-color: transparent transparent #e0e0e0 transparent;
 }
 
-/* Regiones y contenedores */
+/* General padding for UI regions */
 .region {
     -fx-padding: 8px;
 }
 
-/* CheckBox y RadioButton (si se usan) */
+/* Styles for CheckBoxes and RadioButtons */
 .check-box, .radio-button {
     -fx-font-size: 14px;
-    -fx-text-fill: #333;
+    -fx-text-fill: #0d47a1;
 }
-
-

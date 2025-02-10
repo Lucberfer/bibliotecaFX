@@ -12,61 +12,81 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
-
 <?import javafx.scene.layout.ColumnConstraints?>
+
+<!-- Root layout using BorderPane -->
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.bibliotecafx.view.controller.PrestamosController"
             prefWidth="900" prefHeight="600">
+
+    <!-- Top section: Search bar for loan history -->
     <top>
         <HBox spacing="10">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Label text="Historial de Préstamos por Socio (ID):"/>
-            <TextField fx:id="tfSocioId" promptText="ID Socio"/>
-            <Button text="Buscar Historial" onAction="#onBuscarHistorial"/>
-            <Button text="Refrescar Préstamos" onAction="#onRefreshPrestamos"/>
+            <Label text="Historial de Préstamos por Socio (ID):"/> <!-- Label for loan search -->
+            <TextField fx:id="tfSocioId" promptText="ID Socio"/> <!-- Input field for Socio ID -->
+            <Button text="Buscar Historial" onAction="#onBuscarHistorial"/> <!-- Button to search history -->
+            <Button text="Refrescar Préstamos" onAction="#onRefreshPrestamos"/> <!-- Refresh the loans table -->
         </HBox>
     </top>
+
+    <!-- Center section: TableView displaying loans -->
     <center>
         <TableView fx:id="tablaPrestamos">
             <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
-                <TableColumn fx:id="colLibro" text="Libro" prefWidth="150"/>
-                <TableColumn fx:id="colSocio" text="Socio" prefWidth="150"/>
-                <TableColumn fx:id="colFechaPrestamo" text="Fecha Préstamo" prefWidth="120"/>
-                <TableColumn fx:id="colFechaDevolucion" text="Fecha Devolución" prefWidth="120"/>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/> <!-- Loan ID column -->
+                <TableColumn fx:id="colLibro" text="Libro" prefWidth="150"/> <!-- Book title column -->
+                <TableColumn fx:id="colSocio" text="Socio" prefWidth="150"/> <!-- Borrower name column -->
+                <TableColumn fx:id="colFechaPrestamo" text="Fecha Préstamo" prefWidth="120"/> <!-- Loan date -->
+                <TableColumn fx:id="colFechaDevolucion" text="Fecha Devolución" prefWidth="120"/> <!-- Return date -->
             </columns>
         </TableView>
     </center>
+
+    <!-- Bottom section: Loan registration form -->
     <bottom>
         <VBox spacing="10">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Label text="Registrar Préstamo"/>
+
+            <!-- HBox containing form instructions -->
+            <HBox spacing="10">
+                <Label text="Registrar Préstamo"/>
+            </HBox>
+
+            <!-- GridPane for input fields -->
             <GridPane hgap="10" vgap="10">
                 <columnConstraints>
                     <ColumnConstraints halignment="RIGHT"/>
                     <ColumnConstraints/>
                 </columnConstraints>
+
                 <Label text="ID Libro:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="tfLibroId" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <TextField fx:id="tfLibroId" GridPane.rowIndex="0" GridPane.columnIndex="1"/> <!-- Input for Book ID -->
 
                 <Label text="ID Socio:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <TextField fx:id="tfSocioIdPrestamo" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <TextField fx:id="tfSocioIdPrestamo" GridPane.rowIndex="1"
+                           GridPane.columnIndex="1"/> <!-- Input for Borrower ID -->
 
                 <Label text="Fecha Préstamo:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <DatePicker fx:id="dpPrestamo" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <DatePicker fx:id="dpPrestamo" GridPane.rowIndex="2"
+                            GridPane.columnIndex="1"/> <!-- DatePicker for loan date -->
 
                 <Label text="Fecha Devolución:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                <DatePicker fx:id="dpDevolucion" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <DatePicker fx:id="dpDevolucion" GridPane.rowIndex="3"
+                            GridPane.columnIndex="1"/> <!-- DatePicker for return date -->
             </GridPane>
+
+            <!-- HBox containing action buttons -->
             <HBox spacing="10">
-                <Button text="Registrar" onAction="#onRegistrarPrestamo"/>
-                <Button text="Eliminar" onAction="#onEliminarPrestamo"/>
-                <Button text="Limpiar" onAction="#onLimpiar"/>
+                <Button text="Registrar" onAction="#onRegistrarPrestamo"/> <!-- Button to register loan -->
+                <Button text="Eliminar" onAction="#onEliminarPrestamo"/> <!-- Button to delete loan -->
+                <Button text="Limpiar" onAction="#onLimpiar"/> <!-- Button to clear fields -->
             </HBox>
         </VBox>
     </bottom>
+
 </BorderPane>

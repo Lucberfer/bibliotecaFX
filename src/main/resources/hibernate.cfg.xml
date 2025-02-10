@@ -4,25 +4,27 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <!-- Configuración de conexión a la base de datos -->
+
+        <!-- Database connection configuration -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <!-- Asegúrate de que la base de datos 'biblioteca' exista en tu servidor -->
+        <!-- Ensure that the 'biblioteca' database exists on your MySQL server -->
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/biblioteca</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.password"></property> <!-- Set database password if required -->
 
-        <!-- Configuración del dialecto de la base de datos -->
+        <!-- MySQL dialect for Hibernate (adjust based on MySQL version) -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
-        <!-- Configuración de la generación del esquema -->
-        <property name="hibernate.hbm2ddl.auto">update</property>
-        <property name="show_sql">true</property>
+        <!-- Schema generation strategy -->
+        <property name="hibernate.hbm2ddl.auto">update
+        </property> <!-- Options: update, create, create-drop, validate, none -->
+        <property name="show_sql">true</property> <!-- Show SQL queries in console for debugging -->
 
-        <!-- Orden de los mapeos (las tablas referenciadas deben crearse primero) -->
-        <mapping class="org.example.bibliotecafx.entities.Autor"/>
-        <mapping class="org.example.bibliotecafx.entities.Libro"/>
-        <mapping class="org.example.bibliotecafx.entities.Socio"/>
-        <mapping class="org.example.bibliotecafx.entities.Prestamo"/>
+        <!-- Entity mappings (order matters: referenced tables should be mapped first) -->
+        <mapping class="org.example.bibliotecafx.entities.Autor"/> <!-- Maps the 'Autor' entity -->
+        <mapping class="org.example.bibliotecafx.entities.Libro"/> <!-- Maps the 'Libro' entity -->
+        <mapping class="org.example.bibliotecafx.entities.Socio"/> <!-- Maps the 'Socio' entity -->
+        <mapping class="org.example.bibliotecafx.entities.Prestamo"/> <!-- Maps the 'Prestamo' entity -->
 
     </session-factory>
 </hibernate-configuration>

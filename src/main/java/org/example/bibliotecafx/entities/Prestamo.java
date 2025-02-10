@@ -5,26 +5,28 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "prestamos")
-
 public class Prestamo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increments the ID
     private long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "libro_id")
+    @JoinColumn(name = "libro_id") // Foreign key column referencing the Libro entity
     private Libro libro;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "socio_id")
+    @JoinColumn(name = "socio_id") // Foreign key column referencing the Socio entity
     private Socio socio;
 
-    private LocalDate fechaPrestamo;
-    private LocalDate fechaDevolucion;
+    private LocalDate fechaPrestamo; // Date when the book was borrowed
+    private LocalDate fechaDevolucion; // Expected return date
 
-    public Prestamo() {}
+    // Default constructor (required by JPA)
+    public Prestamo() {
+    }
 
+    // Constructor with parameters
     public Prestamo(Libro libro, Socio socio, LocalDate fechaPrestamo, LocalDate fechaDevolucion) {
         this.libro = libro;
         this.socio = socio;

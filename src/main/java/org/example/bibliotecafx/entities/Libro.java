@@ -3,40 +3,41 @@ package org.example.bibliotecafx.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "libros")
-
+@Table(name = "libros") // Specifies the table name in the database
 public class Libro {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increments the ID
     private long id;
 
     private String titulo;
     private String isbn;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "autor_id")
+    @ManyToOne(fetch = FetchType.EAGER) // Many books can be associated with one author
+    @JoinColumn(name = "autor_id") // Foreign key column referencing the Autor entity
     private Autor autor;
 
     private String editorial;
     private Integer anioPublicacion;
 
-    // Indicates if the book is borrowed
+    // Indicates if the book is currently borrowed
     private boolean prestado;
 
-    public  Libro() {}
+    // Default constructor (required by JPA)
+    public Libro() {
+    }
 
+    // Constructor with parameters
     public Libro(String titulo, String isbn, Autor autor, String editorial, Integer anioPublicacion) {
         this.titulo = titulo;
         this.isbn = isbn;
         this.autor = autor;
         this.editorial = editorial;
         this.anioPublicacion = anioPublicacion;
-        this.prestado = false;
-        //
+        this.prestado = false; // Default value: the book is available upon creation
     }
 
-    //Getters & Setters
+    // Getters & Setters
 
     public long getId() {
         return id;
@@ -96,6 +97,6 @@ public class Libro {
 
     @Override
     public String toString() {
-        return titulo;
+        return titulo; // Returns the book's title as its string representation
     }
 }

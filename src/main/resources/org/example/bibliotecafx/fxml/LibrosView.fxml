@@ -10,65 +10,90 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.layout.ColumnConstraints?>
+
+<!-- Root layout using BorderPane -->
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.bibliotecafx.view.controller.LibrosController"
             prefWidth="900" prefHeight="600">
+
+    <!-- Top section: Search bar -->
     <top>
         <HBox spacing="10">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
             <Label text="Buscar:"/>
-            <TextField fx:id="tfBuscarTitulo" promptText="Título"/>
-            <TextField fx:id="tfBuscarAutor" promptText="Autor"/>
-            <TextField fx:id="tfBuscarISBN" promptText="ISBN"/>
-            <Button text="Buscar" onAction="#onBuscar"/>
-            <Button text="Refrescar" onAction="#onRefresh"/>
+            <TextField fx:id="tfBuscarTitulo" promptText="Título"/> <!-- Search by title -->
+            <TextField fx:id="tfBuscarAutor" promptText="Autor"/> <!-- Search by author -->
+            <TextField fx:id="tfBuscarISBN" promptText="ISBN"/> <!-- Search by ISBN -->
+            <Button text="Buscar" onAction="#onBuscar"/> <!-- Button to search books -->
+            <Button text="Refrescar" onAction="#onRefresh"/> <!-- Button to refresh table -->
         </HBox>
     </top>
+
+    <!-- Center section: TableView displaying books -->
     <center>
         <TableView fx:id="tablaLibros">
             <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
-                <TableColumn fx:id="colTitulo" text="Título" prefWidth="150"/>
-                <TableColumn fx:id="colISBN" text="ISBN" prefWidth="100"/>
-                <TableColumn fx:id="colAutor" text="Autor" prefWidth="100"/>
-                <TableColumn fx:id="colEditorial" text="Editorial" prefWidth="100"/>
-                <TableColumn fx:id="colAnio" text="Año" prefWidth="70"/>
-                <TableColumn fx:id="colPrestado" text="Prestado" prefWidth="70"/>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/> <!-- Column for book ID -->
+                <TableColumn fx:id="colTitulo" text="Título" prefWidth="150"/> <!-- Column for book title -->
+                <TableColumn fx:id="colISBN" text="ISBN" prefWidth="100"/> <!-- Column for ISBN -->
+                <TableColumn fx:id="colAutor" text="Autor" prefWidth="100"/> <!-- Column for author -->
+                <TableColumn fx:id="colEditorial" text="Editorial" prefWidth="100"/> <!-- Column for publisher -->
+                <TableColumn fx:id="colAnio" text="Año" prefWidth="70"/> <!-- Column for publication year -->
+                <TableColumn fx:id="colPrestado" text="Prestado" prefWidth="70"/> <!-- Column for loan status -->
             </columns>
         </TableView>
     </center>
+
+    <!-- Bottom section: Form for adding/modifying books -->
     <bottom>
         <VBox spacing="10">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Label text="Agregar / Modificar Libro"/>
+
+            <!-- HBox containing form instructions -->
+            <HBox spacing="10">
+                <Label text="Agregar / Modificar Libros"/>
+                <Label text="Click en el libro en la lista de arriba para modificar"/>
+            </HBox>
+
+            <!-- GridPane for input fields -->
             <GridPane hgap="10" vgap="10">
                 <columnConstraints>
                     <ColumnConstraints halignment="RIGHT"/>
                     <ColumnConstraints/>
                 </columnConstraints>
+
                 <Label text="Título:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="tfTitulo" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <TextField fx:id="tfTitulo" GridPane.rowIndex="0" GridPane.columnIndex="1"/> <!-- Input for title -->
+
                 <Label text="ISBN:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <TextField fx:id="tfISBN" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <TextField fx:id="tfISBN" GridPane.rowIndex="1" GridPane.columnIndex="1"/> <!-- Input for ISBN -->
+
                 <Label text="Autor (ID):" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <TextField fx:id="tfAutorId" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <TextField fx:id="tfAutorId" GridPane.rowIndex="2"
+                           GridPane.columnIndex="1"/> <!-- Input for author ID -->
+
                 <Label text="Editorial:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                <TextField fx:id="tfEditorial" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <TextField fx:id="tfEditorial" GridPane.rowIndex="3"
+                           GridPane.columnIndex="1"/> <!-- Input for publisher -->
+
                 <Label text="Año:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                <TextField fx:id="tfAnio" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <TextField fx:id="tfAnio" GridPane.rowIndex="4"
+                           GridPane.columnIndex="1"/> <!-- Input for publication year -->
             </GridPane>
+
+            <!-- HBox containing action buttons -->
             <HBox spacing="10">
-                <Button text="Agregar" onAction="#onAgregar"/>
-                <Button text="Modificar" onAction="#onModificar"/>
-                <Button text="Eliminar" onAction="#onEliminar"/>
-                <Button text="Limpiar" onAction="#onLimpiar"/>
+                <Button text="Agregar" onAction="#onAgregar"/> <!-- Button to add a new book -->
+                <Button text="Modificar" onAction="#onModificar"/> <!-- Button to modify selected book -->
+                <Button text="Eliminar" onAction="#onEliminar"/> <!-- Button to delete selected book -->
+                <Button text="Limpiar" onAction="#onLimpiar"/> <!-- Button to clear input fields -->
             </HBox>
         </VBox>
     </bottom>
+
 </BorderPane>

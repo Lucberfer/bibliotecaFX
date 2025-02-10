@@ -11,48 +11,67 @@ import javafx.scene.control.*;
 
 public class SociosController {
 
-    @FXML private TableView<Socio> tablaSocios;
-    @FXML private TableColumn<Socio, Long> colId;
-    @FXML private TableColumn<Socio, String> colNombre;
-    @FXML private TableColumn<Socio, String> colDireccion;
-    @FXML private TableColumn<Socio, String> colTelefono;
+    // TableView and TableColumns for displaying members
+    @FXML
+    private TableView<Socio> tablaSocios;
+    @FXML
+    private TableColumn<Socio, Long> colId;
+    @FXML
+    private TableColumn<Socio, String> colNombre;
+    @FXML
+    private TableColumn<Socio, String> colDireccion;
+    @FXML
+    private TableColumn<Socio, String> colTelefono;
 
-    @FXML private TextField tfBuscarNombre;
-    @FXML private TextField tfBuscarTelefono;
+    // TextFields for searching members
+    @FXML
+    private TextField tfBuscarNombre;
+    @FXML
+    private TextField tfBuscarTelefono;
 
-    @FXML private TextField tfNombre;
-    @FXML private TextField tfDireccion;
-    @FXML private TextField tfTelefono;
+    // TextFields for member input
+    @FXML
+    private TextField tfNombre;
+    @FXML
+    private TextField tfDireccion;
+    @FXML
+    private TextField tfTelefono;
 
-    private SocioDAO socioDAO = new SocioDAO();
-    private ObservableList<Socio> sociosList;
+    private SocioDAO socioDAO = new SocioDAO(); // DAO for member operations
+    private ObservableList<Socio> sociosList; // Observable list for TableView
 
     @FXML
-    public void initialize(){
+    public void initialize() {
+        // Setting up table column bindings
         colId.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getId()));
         colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
         colDireccion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDireccion()));
         colTelefono.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefono()));
 
+        // Listener to update text fields when a member is selected
         tablaSocios.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if(newSelection != null){
+            if (newSelection != null) {
                 tfNombre.setText(newSelection.getNombre());
                 tfDireccion.setText(newSelection.getDireccion());
                 tfTelefono.setText(newSelection.getTelefono());
             }
         });
-        refreshTable();
+
+        refreshTable(); // Load members into the table
     }
 
     @FXML
-    private void onAgregar(){
+    private void onAgregar() {
+        // Adds a new member
         String nombre = tfNombre.getText();
         String direccion = tfDireccion.getText();
         String telefono = tfTelefono.getText();
-        if(nombre.isEmpty()){
+
+        if (nombre.isEmpty()) {
             showAlert("Error", "El nombre es requerido");
             return;
         }
+
         Socio socio = new Socio(nombre, direccion, telefono);
         socioDAO.addSocio(socio);
         refreshTable();
@@ -61,12 +80,14 @@ public class SociosController {
     }
 
     @FXML
-    private void onModificar(){
+    private void onModificar() {
+        // Updates the selected member
         Socio socio = tablaSocios.getSelectionModel().getSelectedItem();
-        if(socio == null){
+        if (socio == null) {
             showAlert("Error", "Seleccione un socio para modificar");
             return;
         }
+
         socio.setNombre(tfNombre.getText());
         socio.setDireccion(tfDireccion.getText());
         socio.setTelefono(tfTelefono.getText());
@@ -77,9 +98,10 @@ public class SociosController {
     }
 
     @FXML
-    private void onEliminar(){
+    private void onEliminar() {
+        // Deletes the selected member
         Socio socio = tablaSocios.getSelectionModel().getSelectedItem();
-        if(socio == null){
+        if (socio == null) {
             showAlert("Error", "Seleccione un socio para eliminar");
             return;
         }
@@ -90,7 +112,8 @@ public class SociosController {
     }
 
     @FXML
-    private void onBuscar(){
+    private void onBuscar() {
+        // Searches for members by name and/or phone number
         String nombre = tfBuscarNombre.getText();
         String telefono = tfBuscarTelefono.getText();
         sociosList = FXCollections.observableArrayList(socioDAO.searchSocios(nombre, telefono));
@@ -98,27 +121,30 @@ public class SociosController {
     }
 
     @FXML
-    private void onRefresh(){
-        refreshTable();
+    private void onRefresh() {
+        refreshTable(); // Refreshes the table
     }
 
     @FXML
-    private void onLimpiar(){
-        clearFields();
+    private void onLimpiar() {
+        clearFields(); // Clears input fields
     }
 
-    private void refreshTable(){
+    private void refreshTable() {
+        // Reloads the list of members into the table
         sociosList = FXCollections.observableArrayList(socioDAO.listAllSocios());
         tablaSocios.setItems(sociosList);
     }
 
-    private void clearFields(){
+    private void clearFields() {
+        // Clears the text fields
         tfNombre.clear();
         tfDireccion.clear();
         tfTelefono.clear();
     }
 
-    private void showAlert(String title, String message){
+    private void showAlert(String title, String message) {
+        // Displays an alert dialog
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setContentText(message);

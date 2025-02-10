@@ -12,37 +12,50 @@ import javafx.scene.control.*;
 
 public class AutoresController {
 
-    @FXML private TableView<Autor> tablaAutores;
-    @FXML private TableColumn<Autor, Long> colId;
-    @FXML private TableColumn<Autor, String> colNombre;
-    @FXML private TableColumn<Autor, String> colNacionalidad;
+    // TableView for displaying authors
+    @FXML
+    private TableView<Autor> tablaAutores;
+    @FXML
+    private TableColumn<Autor, Long> colId;
+    @FXML
+    private TableColumn<Autor, String> colNombre;
+    @FXML
+    private TableColumn<Autor, String> colNacionalidad;
 
-    @FXML private TextField tfBuscarNombre;
+    // TextField for searching authors
+    @FXML
+    private TextField tfBuscarNombre;
 
-    @FXML private TextField tfNombre;
-    @FXML private TextField tfNacionalidad;
+    // TextFields for author input
+    @FXML
+    private TextField tfNombre;
+    @FXML
+    private TextField tfNacionalidad;
 
-    private AutorDAO autorDAO = new AutorDAO();
-    private ObservableList<Autor> autoresList;
+    private AutorDAO autorDAO = new AutorDAO(); // DAO for author operations
+    private ObservableList<Autor> autoresList; // Observable list for TableView
 
     @FXML
     public void initialize() {
+        // Setting up table column bindings
         colId.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getId()));
         colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
         colNacionalidad.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNacionalidad()));
 
+        // Listener to update text fields when an author is selected
         tablaAutores.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if(newSelection != null){
+            if (newSelection != null) {
                 tfNombre.setText(newSelection.getNombre());
                 tfNacionalidad.setText(newSelection.getNacionalidad());
             }
         });
-        refreshTable();
+
+        refreshTable(); // Load authors into the table
     }
 
     @FXML
     public void onBuscar(ActionEvent event) {
-
+        // Searches for authors by name
         String nombre = tfBuscarNombre.getText();
         autoresList = FXCollections.observableArrayList(autorDAO.searchAutores(nombre));
         tablaAutores.setItems(autoresList);
@@ -50,15 +63,20 @@ public class AutoresController {
 
     @FXML
     public void onRefresh(ActionEvent event) {
+        refreshTable(); // Refreshes the table
     }
+
     @FXML
     public void onAgregar(ActionEvent event) {
+        // Adds a new author
         String nombre = tfNombre.getText();
         String nacionalidad = tfNacionalidad.getText();
-        if(nombre.isEmpty()){
+
+        if (nombre.isEmpty()) {
             showAlert("Error", "El nombre es requerido");
             return;
         }
+
         Autor autor = new Autor(nombre, nacionalidad);
         autorDAO.addAutor(autor);
         refreshTable();
@@ -68,12 +86,13 @@ public class AutoresController {
 
     @FXML
     public void onModificar(ActionEvent event) {
-
+        // Updates the selected author
         Autor autor = tablaAutores.getSelectionModel().getSelectedItem();
-        if(autor == null){
+        if (autor == null) {
             showAlert("Error", "Seleccione un autor para modificar");
             return;
         }
+
         autor.setNombre(tfNombre.getText());
         autor.setNacionalidad(tfNacionalidad.getText());
         autorDAO.updateAutor(autor);
@@ -84,12 +103,13 @@ public class AutoresController {
 
     @FXML
     public void onEliminar(ActionEvent event) {
-
+        // Deletes the selected author
         Autor autor = tablaAutores.getSelectionModel().getSelectedItem();
-        if(autor == null){
+        if (autor == null) {
             showAlert("Error", "Seleccione un autor para eliminar");
             return;
         }
+
         autorDAO.deleteAutor(autor);
         refreshTable();
         clearFields();
@@ -97,28 +117,29 @@ public class AutoresController {
     }
 
     @FXML
-    public void onRefresh(){
-        refreshTable();
+    public void onRefresh() {
+        refreshTable(); // Refreshes the table
     }
-
 
     @FXML
     public void onLimpiar(ActionEvent event) {
-
-        clearFields();
+        clearFields(); // Clears input fields
     }
 
-    public void refreshTable(){
+    public void refreshTable() {
+        // Reloads the list of authors into the table
         autoresList = FXCollections.observableArrayList(autorDAO.listAllAutores());
         tablaAutores.setItems(autoresList);
     }
 
-    public void clearFields(){
+    public void clearFields() {
+        // Clears the text fields
         tfNombre.clear();
         tfNacionalidad.clear();
     }
 
-    public void showAlert(String title, String message){
+    public void showAlert(String title, String message) {
+        // Displays an alert dialog
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setContentText(message);

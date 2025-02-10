@@ -5,11 +5,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "socios")
-
+@Table(name = "socios") // Specifies the table name in the database
 public class Socio {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increments the ID
     private long id;
 
     private String nombre;
@@ -18,9 +18,17 @@ public class Socio {
 
     @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<Prestamo> prestamos = new HashSet<>();
+    // Defines a one-to-many relationship with the Prestamo entity.
+    // - mappedBy = "socio": Indicates that the relationship is managed by the "socio" field in Prestamo.
+    // - cascade = CascadeType.ALL: All operations (persist, merge, remove, refresh, detach) are cascaded.
+    // - orphanRemoval = true: If a loan is removed from this set, it is also removed from the database.
+    // - fetch = FetchType.LAZY: Loans are loaded only when accessed, improving performance.
 
-    public Socio() {}
+    // Default constructor (required by JPA)
+    public Socio() {
+    }
 
+    // Constructor with parameters
     public Socio(String nombre, String direccion, String telefono) {
         this.nombre = nombre;
         this.direccion = direccion;
@@ -70,6 +78,6 @@ public class Socio {
 
     @Override
     public String toString() {
-        return nombre;
+        return nombre; // Returns the member's name as its string representation
     }
 }

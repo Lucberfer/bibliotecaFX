@@ -10,57 +10,74 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.layout.ColumnConstraints?>
+
+<!-- Root layout using BorderPane -->
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.bibliotecafx.view.controller.AutoresController"
             prefWidth="900" prefHeight="600">
+
+    <!-- Top section: Search bar -->
     <top>
         <HBox spacing="10">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
             <Label text="Buscar:"/>
-            <TextField fx:id="tfBuscarNombre" promptText="Nombre"/>
-            <Button text="Buscar" onAction="#onBuscar"/>
-            <Button text="Refrescar" onAction="#onRefresh"/>
+            <TextField fx:id="tfBuscarNombre" promptText="Nombre"/> <!-- Search input field -->
+            <Button text="Buscar" onAction="#onBuscar"/> <!-- Button to search authors -->
+            <Button text="Refrescar" onAction="#onRefresh"/> <!-- Button to refresh table -->
         </HBox>
     </top>
+
+    <!-- Center section: TableView displaying authors -->
     <center>
         <TableView fx:id="tablaAutores">
             <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
-                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/>
-                <TableColumn fx:id="colNacionalidad" text="Nacionalidad" prefWidth="100"/>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/> <!-- Column for author ID -->
+                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/> <!-- Column for author name -->
+                <TableColumn fx:id="colNacionalidad" text="Nacionalidad"
+                             prefWidth="100"/> <!-- Column for nationality -->
             </columns>
         </TableView>
     </center>
+
+    <!-- Bottom section: Form for adding/modifying authors -->
     <bottom>
         <VBox spacing="10">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <!-- HBox que contiene ambos labels -->
+
+            <!-- HBox containing form instructions -->
             <HBox spacing="10">
                 <Label text="Agregar / Modificar Autor"/>
                 <Label text="Click en el autor en la lista de arriba para modificar"/>
             </HBox>
+
+            <!-- GridPane for input fields -->
             <GridPane hgap="10" vgap="10">
                 <columnConstraints>
                     <ColumnConstraints halignment="RIGHT"/>
                     <ColumnConstraints/>
                 </columnConstraints>
+
                 <Label text="Nombre:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="tfNombre" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <TextField fx:id="tfNombre" GridPane.rowIndex="0" GridPane.columnIndex="1"/> <!-- Input for name -->
+
                 <Label text="Nacionalidad:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <TextField fx:id="tfNacionalidad" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <TextField fx:id="tfNacionalidad" GridPane.rowIndex="1"
+                           GridPane.columnIndex="1"/> <!-- Input for nationality -->
             </GridPane>
+
+            <!-- HBox containing action buttons -->
             <HBox spacing="10">
-                <Button text="Agregar" onAction="#onAgregar"/>
-                <Button text="Modificar" onAction="#onModificar"/>
-                <Button text="Eliminar" onAction="#onEliminar"/>
-                <Button text="Limpiar" onAction="#onLimpiar"/>
+                <Button text="Agregar" onAction="#onAgregar"/> <!-- Button to add a new author -->
+                <Button text="Modificar" onAction="#onModificar"/> <!-- Button to modify selected author -->
+                <Button text="Eliminar" onAction="#onEliminar"/> <!-- Button to delete selected author -->
+                <Button text="Limpiar" onAction="#onLimpiar"/> <!-- Button to clear input fields -->
             </HBox>
         </VBox>
     </bottom>
+
 </BorderPane>

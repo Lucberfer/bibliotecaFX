@@ -12,55 +12,77 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<!-- Root layout using BorderPane -->
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.bibliotecafx.view.controller.SociosController"
             prefWidth="900" prefHeight="600">
+
+    <!-- Top section: Search bar -->
     <top>
-        <HBox spacing="10" stylesheets="">
+        <HBox spacing="10">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Label text="Buscar:"/>
-            <TextField fx:id="tfBuscarNombre" promptText="Nombre"/>
-            <TextField fx:id="tfBuscarTelefono" promptText="Teléfono"/>
-            <Button text="Buscar" onAction="#onBuscar"/>
-            <Button text="Refrescar" onAction="#onRefresh"/>
+            <Label text="Buscar:"/> <!-- Label for search section -->
+            <TextField fx:id="tfBuscarNombre" promptText="Nombre"/> <!-- Input field for searching by name -->
+            <TextField fx:id="tfBuscarTelefono" promptText="Teléfono"/> <!-- Input field for searching by phone -->
+            <Button text="Buscar" onAction="#onBuscar"/> <!-- Button to search members -->
+            <Button text="Refrescar" onAction="#onRefresh"/> <!-- Button to refresh the member table -->
         </HBox>
     </top>
+
+    <!-- Center section: TableView displaying members -->
     <center>
         <TableView fx:id="tablaSocios">
             <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
-                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/>
-                <TableColumn fx:id="colDireccion" text="Dirección" prefWidth="150"/>
-                <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="100"/>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/> <!-- Column for member ID -->
+                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/> <!-- Column for member name -->
+                <TableColumn fx:id="colDireccion" text="Dirección" prefWidth="150"/> <!-- Column for address -->
+                <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="100"/> <!-- Column for phone number -->
             </columns>
         </TableView>
     </center>
+
+    <!-- Bottom section: Form for adding/modifying members -->
     <bottom>
         <VBox spacing="10">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Label text="Agregar / Modificar Socio"/>
+
+
+            <!-- HBox containing form instructions -->
+            <HBox spacing="10">
+                <Label text="Agregar / Modificar Socio"/>
+                <Label text="Click en el socio en la lista de arriba para modificar"/>
+            </HBox>
+
+            <!-- GridPane for input fields -->
             <GridPane hgap="10" vgap="10">
                 <columnConstraints>
                     <ColumnConstraints halignment="RIGHT"/>
                     <ColumnConstraints/>
                 </columnConstraints>
+
                 <Label text="Nombre:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="tfNombre" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <TextField fx:id="tfNombre" GridPane.rowIndex="0" GridPane.columnIndex="1"/> <!-- Input for name -->
+
                 <Label text="Dirección:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <TextField fx:id="tfDireccion" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <TextField fx:id="tfDireccion" GridPane.rowIndex="1"
+                           GridPane.columnIndex="1"/> <!-- Input for address -->
+
                 <Label text="Teléfono:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <TextField fx:id="tfTelefono" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <TextField fx:id="tfTelefono" GridPane.rowIndex="2" GridPane.columnIndex="1"/> <!-- Input for phone -->
             </GridPane>
+
+            <!-- HBox containing action buttons -->
             <HBox spacing="10">
-                <Button text="Agregar" onAction="#onAgregar"/>
-                <Button text="Modificar" onAction="#onModificar"/>
-                <Button text="Eliminar" onAction="#onEliminar"/>
-                <Button text="Limpiar" onAction="#onLimpiar"/>
+                <Button text="Agregar" onAction="#onAgregar"/> <!-- Button to add a new member -->
+                <Button text="Modificar" onAction="#onModificar"/> <!-- Button to modify selected member -->
+                <Button text="Eliminar" onAction="#onEliminar"/> <!-- Button to delete selected member -->
+                <Button text="Limpiar" onAction="#onLimpiar"/> <!-- Button to clear input fields -->
             </HBox>
         </VBox>
     </bottom>
+
 </BorderPane>
