@@ -1,5 +1,5 @@
 @startuml
-' Definir clases principales
+' Define main clases
 class Autor {
     + id: long
     + nombre: String
@@ -28,18 +28,18 @@ class Prestamo {
     + fechaDevolucion: LocalDate
 }
 
-' Definir DAOs
+' Define DAOs
 class AutorDAO
 class LibroDAO
 class SocioDAO
 class PrestamosDAO
 
-' Relaciones entre entidades
+' Entities relationships
 Autor "1" -- "0..*" Libro
 Prestamo "1" -- "1" Libro
 Prestamo "1" -- "1" Socio
 
-' Relacionar DAOs con entidades
+' Relate DAOs to entities
 AutorDAO --> Autor
 LibroDAO --> Libro
 SocioDAO --> Socio
