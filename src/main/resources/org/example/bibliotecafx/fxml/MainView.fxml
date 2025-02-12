@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import java.net.URL?>
+<?import javafx.scene.text.*?>
 
 <!-- Root layout using BorderPane -->
-<BorderPane prefHeight="750" prefWidth="1100"
-            xmlns:fx="http://javafx.com/fxml/1"
-            xmlns="http://javafx.com/javafx/17.0.12"
-            fx:controller="org.example.bibliotecafx.view.controller.MainViewController">
+
+<BorderPane prefHeight="750" prefWidth="1100" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bibliotecafx.view.controller.MainViewController">
 
     <!-- Linking an external CSS stylesheet -->
     <stylesheets>
-        <URL value="@../CSS/style.css"/>
+        <URL value="@../CSS/style.css" />
     </stylesheets>
 
     <!-- Top section: Exit button aligned to the right -->
     <top>
         <HBox alignment="TOP_RIGHT" spacing="10">
             <padding>
-                <Insets bottom="10" left="10" right="10" top="10"/>
+                <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
-            <Button fx:id="btnSalir" onAction="#handleSalir" prefHeight="25.0" prefWidth="80.0"
-                    style="-fx-background-color: red; -fx-text-fill: white;" text="Salir"/>
+            <Button fx:id="btnSalir" onAction="#handleSalir" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Salir" />
         </HBox>
     </top>
 
@@ -31,15 +29,24 @@
     <left>
         <VBox spacing="10">
             <padding>
-                <Insets bottom="10" left="10" right="10" top="10"/>
+                <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
-            <Button onAction="#handleLibros" prefHeight="25.0" prefWidth="76.0" text="Libros"/> <!-- Load Books View -->
-            <Button onAction="#handleAutores" prefHeight="25.0" prefWidth="76.0"
-                    text="Autores"/> <!-- Load Authors View -->
-            <Button onAction="#handleSocios" prefHeight="25.0" prefWidth="76.0"
-                    text="Socios"/> <!-- Load Members View -->
-            <Button onAction="#handlePrestamos" prefHeight="25.0" prefWidth="76.0"
-                    text="Préstamos"/> <!-- Load Loans View -->
+            <Button onAction="#handleLibros" prefHeight="34.0" prefWidth="120.0" text="Libros">
+            <font>
+               <Font size="16.0" />
+            </font></Button> <!-- Load Books View -->
+            <Button onAction="#handleAutores" prefHeight="34.0" prefWidth="120.0" text="Autores">
+            <font>
+               <Font size="16.0" />
+            </font></Button> <!-- Load Authors View -->
+            <Button onAction="#handleSocios" prefHeight="4.0" prefWidth="120.0" text="Socios">
+            <font>
+               <Font size="16.0" />
+            </font></Button> <!-- Load Members View -->
+            <Button onAction="#handlePrestamos" prefHeight="34.0" prefWidth="120.0" text="Préstamos">
+            <font>
+               <Font size="16.0" />
+            </font></Button> <!-- Load Loans View -->
         </VBox>
     </left>
 
@@ -47,7 +54,7 @@
     <center>
         <StackPane fx:id="contentArea">
             <padding>
-                <Insets bottom="10" left="10" right="10" top="10"/>
+                <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
         </StackPane>
     </center>

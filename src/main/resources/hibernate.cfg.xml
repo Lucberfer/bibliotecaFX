@@ -10,7 +10,7 @@
         <!-- Ensure that the 'biblioteca' database exists on your MySQL server -->
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/biblioteca</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password"></property> <!-- Set database password if required -->
+        <property name="hibernate.connection.password"></property>
 
         <!-- MySQL dialect for Hibernate (adjust based on MySQL version) -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>

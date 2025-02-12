@@ -1,39 +1,39 @@
 /* File: style.css */
-/* Soft pastel blue theme for BibliotecaFX, with a modern and subtle look */
+/* Monochrome grayscale theme for BibliotecaFX with enhanced readability */
 
 .root {
-    /* Modern font and a solid pastel blue background */
     -fx-font-family: "Segoe UI", sans-serif;
-    -fx-background-color: #e3f2fd;  /* Light pastel blue */
+    -fx-background-color: #2b2b2b; /* Dark gray background */
 }
 
 /* Styles for Labels */
 .label {
-    -fx-text-fill: #0d47a1;  /* Dark blue for contrast */
+    -fx-text-fill: #e0e0e0;  /* Light gray for contrast */
     -fx-font-size: 14px;
+    -fx-font-weight: bold;
 }
 
 /* Styles for Buttons */
 .button {
-    -fx-background-color: #64b5f6;  /* Pastel blue */
+    -fx-background-color: #4d4d4d;  /* Medium gray */
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-padding: 8px 16px;
     -fx-background-radius: 4px;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0, 0, 1);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 0, 2);
 }
 
 /* Hover effect for buttons */
 .button:hover {
-    -fx-background-color: #42a5f5;
+    -fx-background-color: #666666;  /* Lighter gray */
 }
 
 /* Styles for TextFields */
 .text-field {
-    -fx-background-color: white;
-    -fx-text-fill: #0d47a1;
-    -fx-border-color: #90caf9;
+    -fx-background-color: #333333;
+    -fx-text-fill: #f5f5f5;
+    -fx-border-color: #666666; /* Soft border */
     -fx-border-radius: 4px;
     -fx-background-radius: 4px;
     -fx-padding: 4px 8px;
@@ -41,31 +41,33 @@
 
 /* Styles for TableView */
 .table-view {
-    -fx-background-color: transparent;
-    -fx-table-cell-border-color: #90caf9;
+    -fx-background-color: #3b3b3b; /* Changed to dark gray */
+    -fx-table-cell-border-color: #4d4d4d;
     -fx-padding: 8px;
     -fx-focus-color: transparent;
 }
 
 /* Styles for TableView headers */
 .table-view .column-header-background {
-    -fx-background-color: #64b5f6;
+    -fx-background-color: #444444; /* Adjusted for better contrast */
 }
 
 .table-view .column-header, .table-view .filler {
-    -fx-background-color: #64b5f6;
+    -fx-background-color: #444444;
     -fx-border-color: transparent;
 }
 
 .table-view .column-header .label {
-    -fx-text-fill: white;
+    -fx-text-fill: #e0e0e0;
     -fx-font-weight: bold;
 }
 
 /* Styles for TableView cells */
 .table-cell {
     -fx-padding: 8px;
-    -fx-border-color: transparent transparent #e0e0e0 transparent;
+    -fx-text-fill: #000000; /* Changed to black for readability */
+    -fx-border-color: transparent transparent #333333 transparent;
+    -fx-alignment: CENTER; /* Center align text in cells */
 }
 
 /* General padding for UI regions */
@@ -76,5 +78,26 @@
 /* Styles for CheckBoxes and RadioButtons */
 .check-box, .radio-button {
     -fx-font-size: 14px;
-    -fx-text-fill: #0d47a1;
+    -fx-text-fill: #e0e0e0;
+}
+
+/* ScrollBar customization */
+.scroll-bar {
+    -fx-background-color: #2b2b2b;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #4d4d4d;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #666666;
+}
+
+/* Tooltip customization */
+.tooltip {
+    -fx-background-color: #2b2b2b;
+    -fx-text-fill: #e0e0e0;
+    -fx-padding: 6px;
+    -fx-background-radius: 4px;
 }
