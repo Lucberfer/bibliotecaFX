@@ -80,6 +80,30 @@ public class LibrosController {
             }
         });
 
+        tablaLibros.setRowFactory(tv -> {
+            TableRow<Libro> row = new TableRow<>();
+            Tooltip tooltip = new Tooltip();
+            // Establece el tamaño de fuente del tooltip a 16px
+            tooltip.setStyle("-fx-font-size: 16px;");
+            row.itemProperty().addListener((obs, oldLibro, newLibro) -> {
+                if (newLibro == null) {
+                    row.setTooltip(null);
+                } else {
+                    StringBuilder details = new StringBuilder();
+                    details.append("ID: ").append(newLibro.getId()).append("\n")
+                            .append("Título: ").append(newLibro.getTitulo()).append("\n")
+                            .append("ISBN: ").append(newLibro.getIsbn()).append("\n")
+                            .append("Autor: ").append(newLibro.getAutor() != null ? newLibro.getAutor().getNombre() : "N/A").append("\n")
+                            .append("Editorial: ").append(newLibro.getEditorial()).append("\n")
+                            .append("Año: ").append(newLibro.getAnioPublicacion()).append("\n")
+                            .append("Prestado: ").append(newLibro.isPrestado() ? "Sí" : "No");
+                    tooltip.setText(details.toString());
+                    row.setTooltip(tooltip);
+                }
+            });
+            return row;
+        });
+
         refreshTable(); // Load books into the table
     }
 

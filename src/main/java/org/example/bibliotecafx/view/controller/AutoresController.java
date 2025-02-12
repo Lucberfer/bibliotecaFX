@@ -50,6 +50,25 @@ public class AutoresController {
             }
         });
 
+        tablaAutores.setRowFactory(tv -> {
+            TableRow<Autor> row = new TableRow<>();
+            Tooltip tooltip = new Tooltip();
+            tooltip.setStyle("-fx-font-size: 16px;");
+            row.itemProperty().addListener((obs, oldAutor, newAutor) -> {
+                if (newAutor == null) {
+                    row.setTooltip(null);
+                } else {
+                    StringBuilder details = new StringBuilder();
+                    details.append("ID: ").append(newAutor.getId()).append("\n")
+                            .append("Nombre: ").append(newAutor.getNombre()).append("\n")
+                            .append("Nacionalidad: ").append(newAutor.getNacionalidad());
+                    tooltip.setText(details.toString());
+                    row.setTooltip(tooltip);
+                }
+            });
+            return row;
+        });
+
         refreshTable(); // Load authors into the table
     }
 

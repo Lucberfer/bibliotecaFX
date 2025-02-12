@@ -57,6 +57,27 @@ public class SociosController {
             }
         });
 
+        tablaSocios.setRowFactory(tv -> {
+            TableRow<Socio> row = new TableRow<>();
+            Tooltip tooltip = new Tooltip();
+            tooltip.setStyle("-fx-font-size: 16px;");
+            row.itemProperty().addListener((obs, oldSocio, newSocio) -> {
+                if (newSocio == null) {
+                    row.setTooltip(null);
+                } else {
+                    StringBuilder details = new StringBuilder();
+                    details.append("ID: ").append(newSocio.getId()).append("\n")
+                            .append("Nombre: ").append(newSocio.getNombre()).append("\n")
+                            .append("Dirección: ").append(newSocio.getDireccion()).append("\n")
+                            .append("Teléfono: ").append(newSocio.getTelefono());
+                    tooltip.setText(details.toString());
+                    row.setTooltip(tooltip);
+                }
+            });
+            return row;
+        });
+
+
         refreshTable(); // Load members into the table
     }
 

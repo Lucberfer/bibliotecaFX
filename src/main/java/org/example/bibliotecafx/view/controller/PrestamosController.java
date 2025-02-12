@@ -57,6 +57,28 @@ public class PrestamosController {
         colFechaPrestamo.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getFechaPrestamo()));
         colFechaDevolucion.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getFechaDevolucion()));
 
+        tablaPrestamos.setRowFactory(tv -> {
+            TableRow<Prestamo> row = new TableRow<>();
+            Tooltip tooltip = new Tooltip();
+            tooltip.setStyle("-fx-font-size: 16px;");
+            row.itemProperty().addListener((obs, oldPrestamo, newPrestamo) -> {
+                if (newPrestamo == null) {
+                    row.setTooltip(null);
+                } else {
+                    StringBuilder details = new StringBuilder();
+                    details.append("ID: ").append(newPrestamo.getId()).append("\n")
+                            .append("Libro: ").append(newPrestamo.getLibro() != null ? newPrestamo.getLibro().getTitulo() : "N/A").append("\n")
+                            .append("Socio: ").append(newPrestamo.getSocio() != null ? newPrestamo.getSocio().getNombre() : "N/A").append("\n")
+                            .append("Fecha Préstamo: ").append(newPrestamo.getFechaPrestamo()).append("\n")
+                            .append("Fecha Devolución: ").append(newPrestamo.getFechaDevolucion());
+                    tooltip.setText(details.toString());
+                    row.setTooltip(tooltip);
+                }
+            });
+            return row;
+        });
+
+
         refreshPrestamosTable(); // Load loans into the table
     }
 

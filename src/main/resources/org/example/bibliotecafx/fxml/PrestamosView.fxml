@@ -6,7 +6,7 @@
 
 <!-- Root layout using BorderPane -->
 
-<BorderPane prefHeight="600" prefWidth="900" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="org.example.bibliotecafx.view.controller.PrestamosController">
+<BorderPane prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bibliotecafx.view.controller.PrestamosController">
 
     <!-- Top section: Search bar for loan history -->
     <top>
@@ -26,10 +26,10 @@
         <TableView fx:id="tablaPrestamos">
             <columns>
                 <TableColumn fx:id="colId" prefWidth="50" text="ID" /> <!-- Loan ID column -->
-                <TableColumn fx:id="colLibro" prefWidth="150" text="Libro" /> <!-- Book title column -->
-                <TableColumn fx:id="colSocio" prefWidth="362.0" text="Socio" /> <!-- Borrower name column -->
-                <TableColumn fx:id="colFechaPrestamo" prefWidth="173.0" text="Fecha Préstamo" /> <!-- Loan date -->
-                <TableColumn fx:id="colFechaDevolucion" prefWidth="164.0" text="Fecha Devolución" /> <!-- Return date -->
+                <TableColumn fx:id="colLibro" prefWidth="320.0" text="Libro" /> <!-- Book title column -->
+                <TableColumn fx:id="colSocio" prefWidth="244.0" text="Socio" /> <!-- Borrower name column -->
+                <TableColumn fx:id="colFechaPrestamo" prefWidth="138.0" text="Fecha Préstamo" /> <!-- Loan date -->
+                <TableColumn fx:id="colFechaDevolucion" prefWidth="147.0" text="Fecha Devolución" /> <!-- Return date -->
             </columns>
         </TableView>
     </center>
